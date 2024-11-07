@@ -1,63 +1,30 @@
 "use strict";
 
-// Particles.js setup
-window.onload = function () {
-  particlesJS("particles-js", {
-    particles: {
-      number: {
-        value: 80,
-        density: {
-          enable: true,
-          value_area: 800,
-        },
-      },
-      color: {
-        value: "#6a5acd",
-      },
-      shape: {
-        type: "circle",
-        stroke: {
-          width: 0,
-          color: "#000000",
-        },
-        polygon: {
-          nb_sides: 5,
-        },
-      },
-      opacity: {
-        value: 0.5,
-        random: true,
-        anim: {
-          enable: true,
-          speed: 1,
-          opacity_min: 0.1,
-        },
-      },
-      size: {
-        value: 3,
-        random: true,
-        anim: {
-          enable: true,
-          speed: 40,
-          size_min: 0.1,
-        },
-      },
-      line_linked: {
-        enable: true,
-        distance: 150,
-        color: "#6a5acd",
-        opacity: 0.4,
-        width: 1,
-      },
-    },
-  });
-};
+fetchFact();
 
-// Functions for login and signup
+function fetchFact() {
+  fetch("https://uselessfacts.jsph.pl/api/v2/facts/random?language=en", {
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const factContainer = document.getElementById("fact");
+      factContainer.textContent = `"${data.text}"`;
+    })
+    .catch((error) => {
+      console.error("Error fetching fact: ", error);
+      const factContainer = document.getElementById("fact");
+      factContainer.textContent =
+        "Oops! Something went wrong fetching a fun fact.";
+    });
+}
+
 function login() {
-  alert("Log in clicked");
+  alert("log in");
 }
 
 function signup() {
-  alert("Sign up clicked");
+  alert("sign up");
 }
