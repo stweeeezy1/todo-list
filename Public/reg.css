@@ -94,7 +94,7 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #f9f9f9;
+    background-color: #d1a9a9;
     text-align: center;
     padding: 10px 0;
     font-size: 12px;
@@ -108,5 +108,5 @@ footer a {
 }
 
 footer a:hover {
-    text-decoration: underline;
+    color: #281e6e;
 }

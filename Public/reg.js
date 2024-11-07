@@ -11,7 +11,7 @@ function fetchFact() {
     .then((response) => response.json())
     .then((data) => {
       const factContainer = document.getElementById("fact");
-      factContainer.textContent = `"${data.text}"`;
+      factContainer.textContent = data.text;
     })
     .catch((error) => {
       console.error("Error fetching fact: ", error);
