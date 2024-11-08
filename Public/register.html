@@ -11,14 +11,21 @@
 </head>
 <body>
     <div class="container">
-        <form class="register-form" action="" method="post">
+        <form class="register-form" action="" method="post" id="form">
             <h2>Register</h2>
+
+            <label for="name">Login:</label>
+            <input type="name" id="name" name="name" required>
+
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
             
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
-            
+
+            <label for="password">Confirm your password:</label>
+            <input type="password" id="passwordc" name="password" required>
+
             <label for="birthday">Birthday:</label>
             <input type="date" id="birthday" name="birthday" required>
             
