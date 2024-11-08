@@ -22,9 +22,9 @@ function fetchFact() {
 }
 
 function login() {
-  alert("log in");
+  window.location.href = 'log.html';
 }
 
 function signup() {
-  alert("sign up");
+  window.location.href = 'register.html';
 }
