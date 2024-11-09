@@ -10,7 +10,7 @@
 <body class="light-theme">
     <div class="fixed-icons">
         <button class="theme-toggle-btn" id="theme-toggle-btn">🌙</button>
-        <button class="settings-btn">⚙️</button>
+        <button class="settings-btn" id="settings-btn">⚙️</button>
     </div>
 
     <div class="main-content">
@@ -28,7 +28,7 @@
                 <button class="filter-btn" id="filter-low-priority" data-priority="1">Low Priority</button>
             </div>
             <div class="completed-tasks">
-                <span id="completed-tasks">Completed: <span id="total-count">0</span>/<span id="completed-count">0</span></span>
+                <span id="completed-tasks">Completed: <span id="completed-count">0</span> of <span id="total-count">0</span></span>
             </div>
         </div>
     
@@ -36,7 +36,12 @@
             <ul class="task-list" id="task-list"></ul>
         </div>
     </div>
-    
+
+    <div class="settings-modal" id="settings-modal">
+        <div class="settings-content">
+            <h2>Coming Soon...</h2>
+        </div>
+    </div>
 
     <script src="main.js"></script>
 </body>

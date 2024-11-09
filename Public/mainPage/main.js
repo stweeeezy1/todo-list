@@ -131,3 +131,17 @@ function updateStarDisplay(taskItem, priority) {
 
   taskItem.dataset.priority = priority;
 }
+
+const settingsBtn = document.getElementById("settings-btn");
+const settingsModal = document.getElementById("settings-modal");
+const closeBtn = document.getElementById("close-btn");
+
+settingsBtn.addEventListener("click", function () {
+  settingsModal.style.display = "flex";
+});
+
+window.addEventListener("click", function (event) {
+  if (event.target === settingsModal) {
+    settingsModal.style.display = "none";
+  }
+});
