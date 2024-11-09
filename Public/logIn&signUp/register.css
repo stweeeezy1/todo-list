@@ -110,3 +110,27 @@ footer a:hover {
     height: 15px;
     margin: 5px;
 }
+@keyframes wrong{
+  0%{
+ transform: scale(1);
+ transform: translateX(0);
+    }
+25%{
+    transform: translateX(-10px);
+}
+  50%{
+transform: scale(1.01);
+background-color: red;
+  }
+
+  75%{
+    transform: translateX(10px);
+  }
+  100%{
+transform: scale(1);
+transform: translateX(0);
+  }
+}
+.wrongAnswer{
+    animation: wrong 1s ease-out;
+}
