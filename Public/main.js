@@ -1,111 +1,135 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", () => {
-  const taskNameInput = document.querySelector("#task-name");
-  const taskInput = document.querySelector("#task-input");
-  const addTaskButton = document.querySelector(".add-btn");
-  const taskList = document.querySelector(".task-list");
-  const filterButtons = document.querySelectorAll(".filter-btn");
-  let selectedPriority = 1; // Default priority is 1 star
-  const tasks = [];
+document.getElementById("add-task-btn").addEventListener("click", function () {
+  const taskName = document.getElementById("task-name").value;
+  const taskDescription = document.getElementById("task-input").value;
 
-  const themeToggleButton = document.querySelector(".theme-toggle-btn");
-  const settingsButton = document.querySelector(".settings-btn");
+  if (!taskName || !taskDescription) return;
 
-  themeToggleButton.addEventListener("click", () => {
+  const taskList = document.getElementById("task-list");
+
+  const taskItem = document.createElement("li");
+  taskItem.classList.add("task-item");
+
+  const taskContent = document.createElement("div");
+  taskContent.classList.add("task-content");
+
+  const taskTitle = document.createElement("div");
+  taskTitle.classList.add("task-title");
+  taskTitle.innerText = taskName;
+
+  const taskDescriptionDiv = document.createElement("div");
+  taskDescriptionDiv.classList.add("task-description");
+  taskDescriptionDiv.innerText = taskDescription;
+
+  const taskActions = document.createElement("div");
+  taskActions.classList.add("task-actions");
+
+  const completeBtn = document.createElement("button");
+  completeBtn.classList.add("complete-btn");
+  completeBtn.innerText = "Done";
+  completeBtn.addEventListener("click", function () {
+    taskItem.classList.toggle("completed");
+    updateCompletedCount();
+  });
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.classList.add("delete-btn");
+  deleteBtn.innerText = "Delete";
+  deleteBtn.addEventListener("click", function () {
+    taskItem.remove();
+    updateCompletedCount();
+  });
+
+  taskActions.appendChild(completeBtn);
+  taskActions.appendChild(deleteBtn);
+
+  taskContent.appendChild(taskTitle);
+  taskContent.appendChild(taskDescriptionDiv);
+  taskContent.appendChild(taskActions);
+
+  taskItem.appendChild(taskContent);
+
+  const starRating = document.createElement("div");
+  starRating.classList.add("star-rating");
+
+  let selectedStars = 0;
+
+  for (let i = 1; i <= 3; i++) {
+    const star = document.createElement("span");
+    star.classList.add("star");
+    star.innerHTML = "&#9733;";
+    star.setAttribute("data-value", i);
+    star.addEventListener("click", function () {
+      setTaskPriority(taskItem, i);
+      selectedStars = i;
+      updateStarDisplay(taskItem, selectedStars);
+    });
+    starRating.appendChild(star);
+  }
+
+  taskItem.appendChild(starRating);
+  taskList.appendChild(taskItem);
+
+  updateCompletedCount();
+});
+
+function updateCompletedCount() {
+  const totalCount = document.querySelectorAll(".task-item").length;
+  const completedCount = document.querySelectorAll(
+    ".task-item.completed"
+  ).length;
+  document.getElementById("completed-count").innerText = completedCount;
+  document.getElementById("total-count").innerText = totalCount;
+}
+
+document
+  .getElementById("theme-toggle-btn")
+  .addEventListener("click", function () {
     document.body.classList.toggle("dark-theme");
-    document.body.classList.toggle("light-theme");
-
-    if (document.body.classList.contains("dark-theme")) {
-      themeToggleButton.textContent = "🌞";
-    } else {
-      themeToggleButton.textContent = "🌙";
-    }
+    const themeBtn = document.getElementById("theme-toggle-btn");
+    themeBtn.innerText = document.body.classList.contains("dark-theme")
+      ? "🌞"
+      : "🌙";
   });
 
-  taskInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      addTask();
-    }
-  });
+document.querySelectorAll(".filter-btn").forEach((button) => {
+  button.addEventListener("click", function () {
+    document
+      .querySelectorAll(".filter-btn")
+      .forEach((btn) => btn.classList.remove("active"));
+    button.classList.add("active");
 
-  addTaskButton.addEventListener("click", () => {
-    addTask();
-  });
+    const priority = button.dataset.priority;
+    const tasks = document.querySelectorAll(".task-item");
 
-  function addTask() {
-    const taskName = taskNameInput.value.trim();
-    const taskDescription = taskInput.value.trim();
-
-    if (taskName === "" || taskDescription === "") {
-      return;
-    }
-
-    const task = {
-      name: taskName,
-      description: taskDescription,
-      priority: selectedPriority,
-    };
-
-    tasks.push(task);
-    renderTasks();
-
-    taskNameInput.value = "";
-    taskInput.value = "";
-  }
-
-  function renderTasks(filter = "all") {
-    taskList.innerHTML = "";
-    let filteredTasks = tasks;
-
-    if (filter !== "all") {
-      filteredTasks = tasks.filter(
-        (task) => task.priority === parseInt(filter)
-      );
-    }
-
-    filteredTasks.forEach((task, index) => {
-      const taskItem = document.createElement("li");
-      taskItem.classList.add("task-item");
-      taskItem.innerHTML = `
-        <h3>${task.name}</h3>
-        <p>${task.description}</p>
-        <div class="star-rating" data-index="${index}">
-          ${createStarRating(task.priority)}
-        </div>
-      `;
-      taskList.appendChild(taskItem);
-    });
-
-    document.querySelectorAll(".star").forEach((star) => {
-      star.addEventListener("click", (e) => {
-        const taskIndex = e.target.closest(".star-rating").dataset.index;
-        updateTaskPriority(taskIndex, parseInt(e.target.dataset.value));
-      });
-    });
-  }
-
-  function createStarRating(priority) {
-    let stars = "";
-    for (let i = 1; i <= 3; i++) {
-      const starClass = i <= priority ? "active" : "";
-      stars += `<span class="star ${starClass}" data-value="${i}">★</span>`;
-    }
-    return stars;
-  }
-
-  function updateTaskPriority(index, priority) {
-    tasks[index].priority = priority;
-    renderTasks();
-  }
-
-  filterButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const priority = button.dataset.priority;
-      selectedPriority = priority;
-      filterButtons.forEach((btn) => btn.classList.remove("active"));
-      button.classList.add("active");
-      renderTasks(priority);
+    tasks.forEach((task) => {
+      if (priority === "all" || task.dataset.priority === priority) {
+        task.style.display = "flex";
+      } else {
+        task.style.display = "none";
+      }
     });
   });
 });
+
+document.querySelectorAll(".task-item").forEach((task) => {
+  task.dataset.priority = Math.floor(Math.random() * 3) + 1;
+});
+
+function setTaskPriority(taskItem, priority) {
+  const stars = taskItem.querySelectorAll(".star");
+  stars.forEach((star) => {
+    star.classList.remove("active");
+  });
+
+  for (let i = 0; i < priority; i++) {
+    stars[i].classList.add("active");
+  }
+
+  taskItem.dataset.priority = priority;
+}
+
+for (let i = 0; i < selectedStars; i++) {
+  stars[i].classList.add("active");
+}
