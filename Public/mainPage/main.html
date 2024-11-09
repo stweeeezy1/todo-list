@@ -21,7 +21,6 @@
                 <input type="text" placeholder="Task Description" id="task-input" />
                 <button class="add-btn" id="add-task-btn">Add</button>
             </div>
-            
             <div class="filters">
                 <button class="filter-btn active" id="filter-all" data-priority="all">All</button>
                 <button class="filter-btn" id="filter-high-priority" data-priority="3">High Priority</button>
@@ -29,15 +28,15 @@
                 <button class="filter-btn" id="filter-low-priority" data-priority="1">Low Priority</button>
             </div>
             <div class="completed-tasks">
-                <span id="completed-tasks">Completed: <span id="completed-count">0</span>/<span id="total-count">0</span></span>
+                <span id="completed-tasks">Completed: <span id="total-count">0</span>/<span id="completed-count">0</span></span>
             </div>
         </div>
-
+    
         <div class="task-list-container">
-            <ul class="task-list" id="task-list">
-            </ul>
+            <ul class="task-list" id="task-list"></ul>
         </div>
     </div>
+    
 
     <script src="main.js"></script>
 </body>

@@ -61,7 +61,6 @@ document.getElementById("add-task-btn").addEventListener("click", function () {
     star.innerHTML = "&#9733;";
     star.setAttribute("data-value", i);
     star.addEventListener("click", function () {
-      setTaskPriority(taskItem, i);
       selectedStars = i;
       updateStarDisplay(taskItem, selectedStars);
     });
@@ -72,6 +71,9 @@ document.getElementById("add-task-btn").addEventListener("click", function () {
   taskList.appendChild(taskItem);
 
   updateCompletedCount();
+
+  document.getElementById("task-name").value = "";
+  document.getElementById("task-input").value = "";
 });
 
 function updateCompletedCount() {
@@ -117,7 +119,7 @@ document.querySelectorAll(".task-item").forEach((task) => {
   task.dataset.priority = Math.floor(Math.random() * 3) + 1;
 });
 
-function setTaskPriority(taskItem, priority) {
+function updateStarDisplay(taskItem, priority) {
   const stars = taskItem.querySelectorAll(".star");
   stars.forEach((star) => {
     star.classList.remove("active");
@@ -128,8 +130,4 @@ function setTaskPriority(taskItem, priority) {
   }
 
   taskItem.dataset.priority = priority;
-}
-
-for (let i = 0; i < selectedStars; i++) {
-  stars[i].classList.add("active");
 }
