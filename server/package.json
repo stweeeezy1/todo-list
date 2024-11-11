@@ -1,0 +1,12 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "Task Manager App\r A full-stack task management application built with HTML, CSS, JavaScript, and Python for the backend. Effortlessly manage your tasks, set priorities, and track your progress.",
+  "main": "index.js",
+"scripts": {
+    "start": "nodemon index.js" 
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
