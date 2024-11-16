@@ -1,6 +1,7 @@
 const User = require("./models/User");
 const Role = require("./models/Role");
 const bcrypt = require("bcryptjs");
+<<<<<<< HEAD
 const jwt = require("jsonwebtoken");
 const { secret } = require("./config");
 
@@ -11,10 +12,19 @@ const generateAccessToken = (id, roles) => {
   };
   return jwt.sign(payload, secret, { expiresIn: "24h" });
 };
+=======
+const { validationResult } = require("express-validator");
+>>>>>>> 21021add340308af98893f4c0d91a816204c166f
 
 class authController {
   async registration(req, res) {
     try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res
+          .status(400)
+          .json({ message: "error with registration", errors });
+      }
       const { username, password } = req.body;
       const candidate = await User.findOne({ username });
       if (candidate) {
@@ -33,7 +43,7 @@ class authController {
       const user = new User({
         username,
         password: hashPassword,
-        roles: [userRole._id],
+        roles: [userRole],
       });
 
       await user.save();
@@ -53,10 +63,15 @@ class authController {
       }
       const validPassword = bcrypt.compareSync(password, user.password);
       if (!validPassword) {
+<<<<<<< HEAD
         return res.status(400).json({ message: `wrong password` });
       }
       const token = generateAccessToken(user._id, user.roles);
       return res.json({ token });
+=======
+        return res.status(400).json({ message: "wrong password" });
+      }
+>>>>>>> 21021add340308af98893f4c0d91a816204c166f
     } catch (e) {
       res.status(400).json({ message: "Login error" });
     }

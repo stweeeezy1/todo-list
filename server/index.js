@@ -1,7 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const authRouter = require("./authRouter");
+<<<<<<< HEAD
 const PORT = process.env.PORT || 5002;
+=======
+const PORT = process.env.PORT || 5089;
+>>>>>>> 21021add340308af98893f4c0d91a816204c166f
 
 const app = express();
 
