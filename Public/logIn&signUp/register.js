@@ -7,10 +7,14 @@ form.addEventListener('submit', function(event){
     const password = fieldpassword.value;
     const passwordc = fieldpasswordconformation.value;
     if(password != passwordc){
-      fieldpasswordconformation.classList.remove("my-animation");
-      void fieldpasswordconformation.offsetWidth;
+        fieldpasswordconformation.classList.remove("wrongAnswer");
+        void fieldpasswordconformation.offsetWidth;
         fieldpasswordconformation.classList.add("wrongAnswer");
     } else{
         form.submit();
     }
+})
+
+fieldpasswordconformation.addEventListener('input', function(){
+    fieldpasswordconformation.classList.remove("my-animation");
 })
