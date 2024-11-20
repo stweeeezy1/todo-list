@@ -134,3 +134,22 @@ transform: translateX(0);
 .wrongAnswer{
     animation: wrong 1s ease-out;
 }
+#requirements {
+    margin-top: 5px; 
+    font-size: 0.9em;
+    color: #555;
+}
+#requirements ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; 
+}
+#requirements li {
+    margin: 3px 0; 
+}
+.invalid {
+    color: #e74c3c;
+}
+.valid {
+    color: #2ecc71;
+}

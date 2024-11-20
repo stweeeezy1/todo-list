@@ -22,16 +22,17 @@
             
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
-           
+
             <div id="requerments">
-            
+                <ul>
+                    <li id="length" class="invalid">At least 8 characters</li>
+                    <li id="uppercase" class="invalid">At least one uppercase letter</li>
+                    <li id="not-empty" class="invalid">Cannot be empty</li>
+                </ul>
             </div>
 
             <label for="password">Confirm your password:</label>
             <input type="password" id="passwordc" name="password" required>
-
-            <label for="birthday">Birthday:</label>
-            <input type="date" id="birthday" name="birthday" required>
             
             <button type="submit" >Submit</button>
         </form>
