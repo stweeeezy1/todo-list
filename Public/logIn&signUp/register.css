@@ -153,3 +153,11 @@ transform: translateX(0);
 .valid {
     color: #2ecc71;
 }
+#UAES{
+    visibility: hidden;
+    margin: 0;
+}
+.taken{
+    color: #e74c3c;
+    font-size: 0.9em;
+}

@@ -53,3 +53,24 @@ fieldpasswordconformation.addEventListener('input', function(){
         notEmptyRequirement.classList.add('invalid');
     }
 });
+
+form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+
+      try {
+        const response = await fetch('http://localhost:5000/registration', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name, email, password }),
+        });
+
+        const data = await response.json();
+        document.getElementById('UAES').textContent = data.message;
+      } catch (error) {
+        document.getElementById('response').textContent = 'Произошла ошибка при отправке данных.';
+      }
+    })
