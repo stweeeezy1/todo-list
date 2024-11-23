@@ -8,8 +8,8 @@ Filter tasks by Low, Medium, or High priority.
 Dark & Light themes for a personalized experience.
 Persistent data storage via a backend server.
 Backend:
-Built with Python and Django to handle task data.
-Data is stored in a MySQL database for persistent task management across sessions.
+Built with Node.js to handle task data.
+Data is stored in a MongoDB database for persistent task management across sessions.
 How to Use:
 Add tasks and set priorities using the star rating system.
 Use filters to view tasks based on their priority.
