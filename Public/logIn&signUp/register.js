@@ -57,7 +57,8 @@ fieldpasswordconformation.addEventListener('input', function(){
 form.addEventListener('submit', async (event) => {
       event.preventDefault();
       const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
+      const password = fieldpassword.value;
+      const user_taken = document.getElementById('UAES');
 
       try {
         const response = await fetch('http://localhost:5000/registration', {
@@ -65,12 +66,18 @@ form.addEventListener('submit', async (event) => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ name, email, password }),
+          body: JSON.stringify({ name, password }),
         });
 
         const data = await response.json();
-        document.getElementById('UAES').textContent = data.message;
+
+        if(response.ok){
+            window.location.href = '/todo-list/Public/welcomePage/reg.html';
+        }else{
+            user_taken.classList.add('taken');
+        }
+        
       } catch (error) {
-        document.getElementById('response').textContent = 'Произошла ошибка при отправке данных.';
+        console.error('Ошибка при отправке запроса:', error);
       }
-    })
+    });
