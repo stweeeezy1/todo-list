@@ -1,5 +1,5 @@
 Task Manager App
-A full-stack task management application built with HTML, CSS, JavaScript, and Python for the backend. Effortlessly manage your tasks, set priorities, and track your progress.
+A full-stack task management application built with HTML, CSS, JavaScript, and Node.js, MongoDB for the backend. Effortlessly manage your tasks, set priorities, and track your progress.
 
 Features:
 Add tasks with names and descriptions.
