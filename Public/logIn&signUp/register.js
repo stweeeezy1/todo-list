@@ -63,18 +63,21 @@ form.addEventListener("submit", async (event) => {
   const user_taken = document.getElementById("UAES");
 
   try {
-    const response = await fetch("https://todo-list-12.onrender.com", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    });
+    const response = await fetch(
+      "https://todo-list-12.onrender.com/auth/registration",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      }
+    );
 
     const data = await response.json();
 
     if (response.ok) {
-      window.location.href = "/todo-list/reg.html";
+      window.location.href = "/todo-list/index.html";
     } else {
       user_taken.classList.add("taken");
       alert(data.message || "Ошибка при регистрации");
