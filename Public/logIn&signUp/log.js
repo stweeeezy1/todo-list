@@ -7,7 +7,7 @@ form.addEventListener("submit", async (event) => {
 
   try {
     const response = await fetch("https://todo-list-12.onrender.com", {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
