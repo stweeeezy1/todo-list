@@ -4,8 +4,9 @@
   "description": "Task Manager App\r A full-stack task management application built with HTML, CSS, JavaScript, and Python for the backend. Effortlessly manage your tasks, set priorities, and track your progress.",
   "main": "index.js",
 "scripts": {
-    "start": "nodemon index.js" 
-  },
+  "start": "pm2 start server/index.js --name todo-list"
+}
+,
   "keywords": [],
   "author": "",
   "license": "ISC"
