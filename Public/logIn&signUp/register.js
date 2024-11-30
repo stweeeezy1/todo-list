@@ -63,7 +63,7 @@ form.addEventListener("submit", async (event) => {
   const user_taken = document.getElementById("UAES");
 
   try {
-    const response = await fetch("http://localhost:5000/auth/registration", {
+    const response = await fetch("https://todo-list-12.onrender.com", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -74,7 +74,7 @@ form.addEventListener("submit", async (event) => {
     const data = await response.json();
 
     if (response.ok) {
-      window.location.href = "/todo-list/Public/welcomePage/reg.html";
+      window.location.href = "/todo-list/reg.html";
     } else {
       user_taken.classList.add("taken");
       alert(data.message || "Ошибка при регистрации");
